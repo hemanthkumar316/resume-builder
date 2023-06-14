@@ -42,6 +42,14 @@ const ResumeForm = () => {
     });
   };
 
+  const handleDeleteEducation = (index) => {
+    setFormData((prevFormData) => {
+      const updatedEducation = [...prevFormData.education];
+      updatedEducation.splice(index, 1);
+      return { ...prevFormData, education: updatedEducation };
+    });
+  };
+
   const handleExperienceInputChange = (index, e) => {
     const { name, value } = e.target;
     setFormData((prevFormData) => {
@@ -51,7 +59,13 @@ const ResumeForm = () => {
     });
   };
 
-
+  const handleDeleteExperience = (index) => {
+    setFormData((prevFormData) => {
+      const updatedExperience = [...prevFormData.experience];
+      updatedExperience.splice(index, 1);
+      return { ...prevFormData, experience: updatedExperience };
+    });
+  };
   const handleSkillsChange = (skills) => {
    setFormData((prevFormData) => ({...prevFormData,skills,}));
  };
@@ -100,7 +114,7 @@ const ResumeForm = () => {
               placeholder="Degree"
               onChange={(e) => handleEducationInputChange(index, e)}
             /><br/>
-          
+          <Button variant='danger' onClick={() => handleDeleteEducation(index)}>Remove</Button><br/><br/>
           </div>
         ))}
         <Button variant="secondary" onClick={handleAddEducation}>
@@ -132,6 +146,12 @@ const ResumeForm = () => {
               placeholder="Designation"
               onChange={(e) => handleExperienceInputChange(index, e)}
             /><br/>
+            <Button
+              variant="danger"
+              onClick={() => handleDeleteExperience(index)}
+            >
+              Remove
+            </Button><br/><br/>
           </div>
         ))}
         <Button variant="secondary" onClick={handleAddExperience}>
